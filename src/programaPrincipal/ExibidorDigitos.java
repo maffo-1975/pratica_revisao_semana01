@@ -10,24 +10,30 @@ public abstract class ExibidorDigitos {
 
 		byte quantidadeDigitos = 5;
 
-		System.out.printf("Numero com %d digitos: ", quantidadeDigitos);
+		System.out.printf("Número positivo com %d digitos: ", quantidadeDigitos);
 
 		Scanner sc = new Scanner(System.in);
 
 		int numero = sc.nextInt();
 
-		SeparadorDigitos.separaDigitos(numero);
+		boolean quantidadeCorretaDigitos = SeparadorDigitos.separaDigitos(numero);
 
-		int[] digitos = SeparadorDigitos.retornaDigitos();
+		if (quantidadeCorretaDigitos) {
 
-		System.out.println();
-		System.out.print("Resultado: ");
+			int[] digitos = SeparadorDigitos.retornaDigitos();
 
-		for (byte i = 0; i < quantidadeDigitos; i++) {
-			if (i == quantidadeDigitos - 1)
-				System.out.printf("%d", digitos[i]);
-			else
-				System.out.printf("%d   ", digitos[i]);
+			System.out.println();
+			System.out.print("Resultado: ");
+
+			for (byte i = 0; i < quantidadeDigitos; i++) {
+				if (i == quantidadeDigitos - 1)
+					System.out.printf("%d", digitos[i]);
+				else
+					System.out.printf("%d   ", digitos[i]);
+			}
+
+		} else {
+			System.out.printf("%nNúmero não tem %d digitos ou não é positivo", quantidadeDigitos);
 		}
 
 		sc.close();
