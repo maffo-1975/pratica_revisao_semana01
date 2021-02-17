@@ -3,8 +3,9 @@ package programaPrincipal;
 import java.util.Scanner;
 
 import numeroInteiro.SeparadorDigitos;
+import numeroInteiro.SeparadorDigitosException;
 
-public abstract class ExibidorDigitos {
+public class ExibidorDigitos {
 
 	public static void main(String[] args) {
 
@@ -16,26 +17,13 @@ public abstract class ExibidorDigitos {
 
 		int numero = sc.nextInt();
 
-		boolean quantidadeCorretaDigitos = SeparadorDigitos.separaDigitos(numero);
-
-		if (quantidadeCorretaDigitos) {
-
-			int[] digitos = SeparadorDigitos.retornaDigitos();
-
-			System.out.println();
-			System.out.print("Resultado: ");
-
-			for (byte i = 0; i < quantidadeDigitos; i++) {
-				if (i == quantidadeDigitos - 1)
-					System.out.printf("%d", digitos[i]);
-				else
-					System.out.printf("%d   ", digitos[i]);
-			}
-
-		} else {
-			System.out.printf("%nNúmero não tem %d digitos ou não é positivo", quantidadeDigitos);
+		try {
+			SeparadorDigitos.exibeDigitosSeparados(numero);
+		} catch (SeparadorDigitosException e) {
+			System.out.print(e.getMessage());
+		} finally {
+			sc.close();
 		}
 
-		sc.close();
 	}
 }
